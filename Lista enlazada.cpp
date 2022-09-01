@@ -103,31 +103,38 @@ void buscarLista(nodo* lista, int n)
     
 }
 
-void borrarElemento(nodo*& lista, int n) {
-    if (lista != NULL) 
+void borrarElemento(nodo*& lista, int n) 
+{
+    //mientras lista sea diferente de null, podremos eliminar los elementos 
+    if (lista != NULL)
     {
         nodo* aux_borrar;
         nodo* anterior = NULL;
-        aux_borrar = lista;
+        aux_borrar = lista; //para que aux_borrar apunte al mismo sitio que lista
 
+        //recorrer la lista
         while ((aux_borrar != NULL) && (aux_borrar->dato != n))
+            //la primer condicion indica que se haga hasta que la lista se encuentre vacia
+            //la segunda condicion indica que se recorra la lista hasta encontrar el dato q se quiere eliminar
         {
-            anterior = aux_borrar;
-            aux_borrar = aux_borrar->siguiente;
+            anterior = aux_borrar;//apunta al sitio que esta apuntando aux_borrar
+            aux_borrar = aux_borrar->siguiente;//si no se encuentra el dato, aux_borrar avanza al siguiente
         }
 
-        if (aux_borrar == NULL) 
+        if (aux_borrar == NULL)//esta condicion se cumple cuando aux_borrar apunta a null
+            //o sea, que el elemento no existe
         {
             cout << "No existe el elemento que quieres eliminar";
         }
-        else if (anterior == NULL) 
+        else if (anterior == NULL)
+        //esta condicion nos indica que el elemento a eliminar es el primero 
         {
-            lista = lista->siguiente;
-            delete aux_borrar;
+            lista = lista->siguiente;//lista apunta al siguiente elemento 
+            delete aux_borrar;//borra el elemento que está apuntando el aux_borrar
         }
-        else 
+        else //este else es para borrar un elemento que este posicionado en un lugar diferente al primer numero 
         {
-            anterior->siguiente = aux_borrar->siguiente;
+            anterior->siguiente = aux_borrar->siguiente; //anteior->siguiente apuntará al mismo elemento que aux_borrar
             delete aux_borrar;
         }
     }
